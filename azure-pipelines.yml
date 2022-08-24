@@ -34,7 +34,7 @@ stages:
           versionType: 'AutoVersion'
           projectJsonPath: '$(Build.SourcesDirectory)'
           outputType: 'Process'
-          runWorkflowAnalysis: true
+
           orchestratorConnection: 'Azure_Connection_to_Orchestrator-Test_GitHub_Pipeline'
           outputPath: '$(Build.ArtifactStagingDirectory)'
 
