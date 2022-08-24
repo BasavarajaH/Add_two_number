@@ -33,9 +33,11 @@ stages:
         inputs:
           versionType: 'AutoVersion'
           projectJsonPath: '$(Build.SourcesDirectory)'
+          runWorkflowAnalysis: true
           outputType: 'Process'
           orchestratorConnection: 'Azure_Connection_to_Orchestrator-Test_GitHub_Pipeline'
           outputPath: '$(Build.ArtifactStagingDirectory)'
+          
       - publish: $(Build.ArtifactStagingDirectory)
         artifact: drop
 
@@ -54,7 +56,7 @@ stages:
               filePath: C:\Data\Workflow-Analyzer-CLI-Script.ps1
               arguments: > 
                 -ProjectFilePath $(Build.SourcesDirectory)\project.json
-                -ExecutableFilePath C:\Program Files\UiPath\Studio\UiPath.Studio.CommandLine.exe
+                -ExecutableFilePath 'C:\Program Files\UiPath\Studio\UiPath.Studio.CommandLine.exe'
                 -OutputFilePath '$(Pipeline.Workspace)\drop\Workflow-Analysis.json'
               workingDirectory: $(Build.SourcesDirectory)
             displayName: 'Analyse Project'
