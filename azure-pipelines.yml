@@ -55,7 +55,7 @@ stages:
               filePath: C:\Data\Workflow-Analyzer-CLI-Script.ps1
               arguments: > 
                 -ProjectFilePath $(Build.SourcesDirectory)\project.json
-                -ExecutableFilePath 'C:\Program Files (x86)\UiPath\Studio\UiPath.Studio.CommandLine.exe'
+                -ExecutableFilePath C:\Program Files (x86)\UiPath\Studio\UiPath.Studio.CommandLine.exe
                 -OutputFilePath '$(Pipeline.Workspace)\drop\Workflow-Analysis.json'
               workingDirectory: $(Build.SourcesDirectory)
             displayName: 'Analyse Project'
