@@ -33,11 +33,11 @@ stages:
         inputs:
           versionType: 'AutoVersion'
           projectJsonPath: '$(Build.SourcesDirectory)'
-          runWorkflowAnalysis: true
+
           outputType: 'Process'
           orchestratorConnection: 'Azure_Connection_to_Orchestrator-Test_GitHub_Pipeline'
           outputPath: '$(Build.ArtifactStagingDirectory)'
-          
+          runWorkflowAnalysis: true
       - publish: $(Build.ArtifactStagingDirectory)
         artifact: drop
 
