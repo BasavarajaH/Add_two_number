@@ -6,7 +6,8 @@
 trigger:
 - master
 
-
+variables:
+  - group: Pipeline_YAML_Variables
 
 
 stages:
@@ -52,11 +53,11 @@ stages:
           - task: PowerShell@2
             inputs:
               targetType: filePath
-              filePath: C:\Data\Workflow-Analyzer-CLI-Script.ps1
+              filePath: $(WA_PS_Script_Path)
               arguments: > 
                 -ProjectFilePath $(Build.SourcesDirectory)\project.json
-                -ExecutableFilePath "C:\'Program Files (x86)'\UiPath\Studio\UiPath.Studio.CommandLine.exe"
-                -OutputFilePath '$(Pipeline.Workspace)\drop\Workflow-Analysis.json'
+                -ExecutableFilePath "$(WA_ExecutableFilePath)"
+                -OutputFilePath '$(WA_OutputFilePath)'
               workingDirectory: $(Build.SourcesDirectory)
             displayName: 'Analyse Project'
 
@@ -92,7 +93,7 @@ stages:
         inputs:
           SourceFolder: '$(Pipeline.Workspace)\drop\'
           Contents: '**'
-          TargetFolder: 'C:\Data'
+          TargetFolder: '$(Package_Repo_Folder)'
           OverWrite: true
 
 
