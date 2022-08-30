@@ -78,8 +78,23 @@ stages:
               inputs:
                  orchestratorConnection: 'Azure_Connection_to_Orchestrator-Test_GitHub_Pipeline'
                  packagesPath: '$(Pipeline.Workspace)\drop\'
-                 folderName: 'Finance'
+                 folderName: '$(Orchestrator_Folder_Name)'
                  entryPoints: 'Main.xaml'
+
+  - stage: AssetInDEV 
+    displayName: Create Assests In DEV
+    dependsOn: DeploytoDEV
+    condition: succeeded()
+    jobs:
+      - job: CreateAssestsInDEV
+
+        steps:
+        - task: UiPathAssets@2
+          inputs:
+            orchestratorConnection: 'Azure_Connection_to_Orchestrator-Test_GitHub_Pipeline'
+            folderName: $(Orchestrator_Folder_Name)
+            assetActionType: 'Deploy'
+            csvFile: '$(Asset_File_Path)'
 
   - stage: CopyFiles 
     displayName: copy build artifact
