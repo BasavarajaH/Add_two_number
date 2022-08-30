@@ -87,7 +87,7 @@ stages:
     condition: succeeded()
     jobs:
       - job: CreateAssestsInDEV
-
+        pool: Default
         steps:
         - task: UiPathAssets@2
           inputs:
